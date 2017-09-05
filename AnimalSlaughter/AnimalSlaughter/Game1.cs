@@ -10,12 +10,14 @@ namespace AnimalSlaughter
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
+        SpriteBatch SpriteBatch;
+        player ThePlayer;
+        Texture2D PlayerMainSprite;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
         }
 
         /// <summary>
@@ -27,7 +29,7 @@ namespace AnimalSlaughter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 
@@ -38,8 +40,9 @@ namespace AnimalSlaughter
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
+            PlayerMainSprite = Content.Load<Texture2D>("player /pinkPix");
+            ThePlayer = new player(100,7,10,PlayerMainSprite,new Vector2(100,100));
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,7 +64,7 @@ namespace AnimalSlaughter
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            ThePlayer.update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -74,9 +77,10 @@ namespace AnimalSlaughter
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            SpriteBatch.Begin();
             // TODO: Add your drawing code here
-
+            ThePlayer.draw(SpriteBatch);
+            SpriteBatch.End();
             base.Draw(gameTime);
         }
     }
