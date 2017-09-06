@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/markus.lejon/Documents/GitHub/animal_hunt/AnimalSlaughter/AnimalSlaughter/Content/player/bill.jpg</SourceFile>
-  <SourceTime>2017-01-27T12:27:19.6192975+01:00</SourceTime>
-  <DestFile>C:/Users/markus.lejon/Documents/GitHub/animal_hunt/AnimalSlaughter/AnimalSlaughter/Content/bin/Windows/player/bill.xnb</DestFile>
-  <DestTime>2017-09-06T08:49:40.1123773+02:00</DestTime>
+  <SourceFile>C:/Users/fredrik.andreasson/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/player/bill.jpg</SourceFile>
+  <SourceTime>2017-09-06T09:05:03.9543463+02:00</SourceTime>
+  <DestFile>C:/Users/fredrik.andreasson/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/bin/Windows/player/bill.xnb</DestFile>
+  <DestTime>2017-09-06T09:06:06.3466999+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

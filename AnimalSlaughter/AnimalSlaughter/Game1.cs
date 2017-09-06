@@ -9,6 +9,7 @@ namespace AnimalSlaughter
     /// </summary>
     public class Game1 : Game
     {
+        
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player ThePlayer;
@@ -16,6 +17,8 @@ namespace AnimalSlaughter
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 2000;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 1024;   // set this value to the desired height of your window
             Content.RootDirectory = "Content";
             
         }
