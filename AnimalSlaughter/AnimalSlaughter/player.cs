@@ -13,22 +13,23 @@ namespace AnimalSlaughter
     {
         int Hp, MoveSpeed,Damage;
         Vector2 Movement;
-        KeyboardState keys;
+        KeyboardState InputKeys;
         Texture2D MainSpirte;
 
 
-        public player(int hp,int moveSpeed, int damage, Texture2D mainSpirte, Vector2 movement)
+        public player(int hp,int moveSpeed, int damage, Texture2D mainSpirte, Vector2 movement, KeyboardState inputKeys)
         {
             Hp = hp;
             MoveSpeed = moveSpeed;
             MainSpirte = mainSpirte;
             Damage = damage;
             Movement = movement;
+            InputKeys = inputKeys;
         }
 
         public void update()
         {
-            userInput(keys);
+            userInput(InputKeys);
         }
 
         public void draw(SpriteBatch spritebatch)

@@ -9,6 +9,7 @@ namespace AnimalSlaughter
     /// </summary>
     public class Game1 : Game
     {
+        
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player ThePlayer;
@@ -16,6 +17,8 @@ namespace AnimalSlaughter
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 2000;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 1024;   // set this value to the desired height of your window
             Content.RootDirectory = "Content";
             
         }
@@ -41,8 +44,9 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerMainSprite = Content.Load<Texture2D>("player /pinkPix");
-            ThePlayer = new player(100,7,10,PlayerMainSprite,new Vector2(100,100));
+            PlayerMainSprite = Content.Load<Texture2D>("player/bill");
+            KeyboardState keyBoard = new KeyboardState();
+            ThePlayer = new player(100,7,10,PlayerMainSprite,new Vector2(100,100),keyBoard);
             // TODO: use this.Content to load your game content here
         }
 
@@ -65,6 +69,9 @@ namespace AnimalSlaughter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             ThePlayer.update();
+
+            //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
