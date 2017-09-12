@@ -11,49 +11,51 @@ namespace AnimalSlaughter
 {
     class player
     {
-        int Hp, MoveSpeed,Damage;
-        Vector2 Movement;
-        KeyboardState keys;
-        Texture2D MainSpirte;
+        int myHp, myMoveSpeed,myDamage,myWeapon;
+        Vector2 myMovement;
+        KeyboardState myKeys;
+        Texture2D myMainSprite;
 
 
-        public player(int hp,int moveSpeed, int damage, Texture2D mainSpirte, Vector2 movement)
+        public player(int someWeapon ,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
         {
-            Hp = hp;
-            MoveSpeed = moveSpeed;
-            MainSpirte = mainSpirte;
-            Damage = damage;
-            Movement = movement;
+            myHp = someHp;
+            myMoveSpeed = someMoveSpeed;
+            myMainSprite = aMainSprite;
+            myDamage = someDamage;
+            myMovement = aMovement;
+            myWeapon = someWeapon;
+
         }
 
         public void update()
         {
-            userInput(keys);
+            userInput(myKeys);
         }
 
         public void draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(MainSpirte,Movement,Color.White);
+            spritebatch.Draw(myMainSprite,myMovement,Color.White);
         }
 
         public void userInput(KeyboardState keyInputs)
         {
             if(keyInputs.IsKeyDown(Keys.W))
             {
-                Movement.Y -= MoveSpeed;
+                myMovement.Y -= myMoveSpeed;
             }
             if (keyInputs.IsKeyDown(Keys.S))
             {
-                Movement.Y += MoveSpeed;
+                myMovement.Y += myMoveSpeed;
             }
             if (keyInputs.IsKeyDown(Keys.A))
             {
-                Movement.X -= MoveSpeed;
+                myMovement.X -= myMoveSpeed;
             }
 
             if (keyInputs.IsKeyDown(Keys.D))
             {
-                Movement.Y += MoveSpeed;
+                myMovement.Y += myMoveSpeed;
             }
         }
     }
