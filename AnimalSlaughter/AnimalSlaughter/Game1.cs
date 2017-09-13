@@ -42,7 +42,7 @@ namespace AnimalSlaughter
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             PlayerMainSprite = Content.Load<Texture2D>("player /pinkPix");
-            ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100));
+            ThePlayer = new player(new Weapons(10,100,PlayerMainSprite,new Vector2(0,0)),100,7,10,PlayerMainSprite,new Vector2(100,100));
             // TODO: use this.Content to load your game content here
         }
 

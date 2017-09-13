@@ -11,13 +11,14 @@ namespace AnimalSlaughter
 {
     class player
     {
-        int myHp, myMoveSpeed,myDamage,myWeapon;
+        int myHp, myMoveSpeed,myDamage;
+        Weapons myWeapon;
         Vector2 myMovement;
         KeyboardState myKeys;
         Texture2D myMainSprite;
 
 
-        public player(int someWeapon ,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
+        public player(Weapons someWeapon,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
         {
             myHp = someHp;
             myMoveSpeed = someMoveSpeed;
