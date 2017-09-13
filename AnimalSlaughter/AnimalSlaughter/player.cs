@@ -35,8 +35,8 @@ namespace AnimalSlaughter
         {
             myKeys = Keyboard.GetState();
             //Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            double musx = Convert.ToDouble( Mouse.GetState().X);
-            double musy = Convert.ToDouble(Mouse.GetState().Y);
+            double musx = Convert.ToDouble( Mouse.GetState().X) - myMovement.X;
+            double musy = Convert.ToDouble(Mouse.GetState().Y) - myMovement.Y;
             myRotation = Math.Atan2(musy,musx);
             userInput(myKeys);
         }
@@ -45,7 +45,7 @@ namespace AnimalSlaughter
         {
            // spritebatch.Draw(myMainSprite,myMovement,Color.White);
            
-            spritebatch.Draw(myMainSprite, new Rectangle((int)myMovement.X, (int)myMovement.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation, new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
+            spritebatch.Draw(myMainSprite, new Rectangle((int)myMovement.X, (int)myMovement.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
         }
 
         public void userInput(KeyboardState keyInputs)
