@@ -1,4 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -14,6 +19,8 @@ namespace AnimalSlaughter
         SpriteBatch SpriteBatch;
         player ThePlayer;
         Texture2D PlayerMainSprite;
+        List<bullet> globalBulletList;
+            
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,7 +39,7 @@ namespace AnimalSlaughter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+            globalBulletList = new List<bullet>();
             base.Initialize();
         }
 
@@ -44,8 +51,9 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerMainSprite = Content.Load<Texture2D>("player/bill");
-            ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100));
+            PlayerMainSprite = Content.Load<Texture2D>("player/player_holdingPistol");
+            ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100),globalBulletList);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -68,7 +76,14 @@ namespace AnimalSlaughter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             ThePlayer.update();
-
+            for(int i = globalBulletList.Count-1; i>=0; i--)
+            {
+                if(globalBulletList[i].isAlive)
+                {
+                    globalBulletList[i].update();
+                }
+                
+            }
             //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
 
             // TODO: Add your update logic here
@@ -87,6 +102,15 @@ namespace AnimalSlaughter
             IsMouseVisible = true;
             // TODO: Add your drawing code here
             ThePlayer.draw(SpriteBatch);
+            for (int i = globalBulletList.Count-1; i >= 0; i--)
+            {
+                if (globalBulletList[i].isAlive)
+                {
+                    globalBulletList[i].draw(SpriteBatch);
+                }
+
+            }
+
             SpriteBatch.End();
             base.Draw(gameTime);
         }

@@ -11,32 +11,36 @@ namespace AnimalSlaughter
 {
     class player
     {
-        int myHp, myMoveSpeed,myDamage,myWeapon;
+        int myHp,myDamage,myWeapon;
+        float myMoveSpeed;
         double myRotation;
-        Vector2 myMovement;
+        Vector2 myPosition;
         KeyboardState myKeys;
         Texture2D myMainSprite;
+        List<bullet> myBulletList;
+        bool isAlive, canShoot;
 
 
-        public player(int someWeapon ,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
+        public player(int someWeapon ,int someHp,float someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aPosition, List<bullet>aBulletList)
         {
             myHp = someHp;
             myMoveSpeed = someMoveSpeed;
             myMainSprite = aMainSprite;
             myDamage = someDamage;
-            myMovement = aMovement;
+            myPosition = aPosition;
             myWeapon = someWeapon;
             myRotation = 0;
-            
-
+            myBulletList = aBulletList;
+            isAlive = true;
+            canShoot = true;
         }
 
         public void update()
         {
             myKeys = Keyboard.GetState();
             //Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            double musx = Convert.ToDouble( Mouse.GetState().X) - myMovement.X;
-            double musy = Convert.ToDouble(Mouse.GetState().Y) - myMovement.Y;
+            double musx = Convert.ToDouble( Mouse.GetState().X) - myPosition.X;
+            double musy = Convert.ToDouble(Mouse.GetState().Y) - myPosition.Y;
             myRotation = Math.Atan2(musy,musx);
             userInput(myKeys);
         }
@@ -45,7 +49,7 @@ namespace AnimalSlaughter
         {
            // spritebatch.Draw(myMainSprite,myMovement,Color.White);
            
-            spritebatch.Draw(myMainSprite, new Rectangle((int)myMovement.X, (int)myMovement.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
+            spritebatch.Draw(myMainSprite, new Rectangle((int)myPosition.X, (int)myPosition.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
         }
 
         public void userInput(KeyboardState keyInputs)
@@ -54,20 +58,33 @@ namespace AnimalSlaughter
             
             if(keyInputs.IsKeyDown(Keys.W))
             {
-                myMovement.Y -= myMoveSpeed;
+                myPosition.Y -= myMoveSpeed;
             }
             if (keyInputs.IsKeyDown(Keys.S))
             {
-                myMovement.Y += myMoveSpeed;
+                myPosition.Y += myMoveSpeed;
             }
             if (keyInputs.IsKeyDown(Keys.A))
             {
-                myMovement.X -= myMoveSpeed;
+                myPosition.X -= myMoveSpeed;
             }
 
             if (keyInputs.IsKeyDown(Keys.D))
             {
-                myMovement.X += myMoveSpeed;
+                myPosition.X += myMoveSpeed;
+            }
+
+            if (keyInputs.IsKeyDown(Keys.Space))
+            {
+                 if(canShoot)
+                {
+                 myBulletList.Add(new bullet(myPosition,myRotation,10+myMoveSpeed,myDamage,myMainSprite,new Rectangle((int)myPosition.X,(int)myPosition.Y,30,30)));
+                }
+                canShoot = false;
+            }
+            else
+            {
+                canShoot = true;
             }
         }
     }

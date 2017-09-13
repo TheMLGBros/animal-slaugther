@@ -21,7 +21,6 @@ C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaught
 C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.csprojResolveAssemblyReference.cache
 C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.exe
 C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.pdb
-C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\player\bill.xnb
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.exe
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.pdb
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\player\bill.xnb
@@ -46,3 +45,4 @@ C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\An
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\fredrik.andreasson\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.csprojResolveAssemblyReference.cache
+C:\Users\markus.lejon\Documents\GitHub\animal_hunt\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\player\player_holdingPistol.xnb
