@@ -11,23 +11,8 @@ namespace AnimalSlaughter
 {
     class player
     {
-<<<<<<< HEAD
-        int Hp, MoveSpeed,Damage;
-        Vector2 Movement;
-        KeyboardState InputKeys;
-        Texture2D MainSpirte;
-
-
-        public player(int hp,int moveSpeed, int damage, Texture2D mainSpirte, Vector2 movement, KeyboardState inputKeys)
-        {
-            Hp = hp;
-            MoveSpeed = moveSpeed;
-            MainSpirte = mainSpirte;
-            Damage = damage;
-            Movement = movement;
-            InputKeys = inputKeys;
-=======
         int myHp, myMoveSpeed,myDamage,myWeapon;
+        double myRotation;
         Vector2 myMovement;
         KeyboardState myKeys;
         Texture2D myMainSprite;
@@ -41,26 +26,32 @@ namespace AnimalSlaughter
             myDamage = someDamage;
             myMovement = aMovement;
             myWeapon = someWeapon;
+            myRotation = 0;
+            
 
->>>>>>> Fredrik-Changes
         }
 
         public void update()
         {
-<<<<<<< HEAD
-            userInput(InputKeys);
-=======
+            myKeys = Keyboard.GetState();
+            //Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            double musx = Convert.ToDouble( Mouse.GetState().X);
+            double musy = Convert.ToDouble(Mouse.GetState().Y);
+            myRotation = Math.Atan2(musy,musx);
             userInput(myKeys);
->>>>>>> Fredrik-Changes
         }
 
         public void draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(myMainSprite,myMovement,Color.White);
+           // spritebatch.Draw(myMainSprite,myMovement,Color.White);
+           
+            spritebatch.Draw(myMainSprite, new Rectangle((int)myMovement.X, (int)myMovement.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation, new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
         }
 
         public void userInput(KeyboardState keyInputs)
         {
+            Keyboard.GetState();
+            
             if(keyInputs.IsKeyDown(Keys.W))
             {
                 myMovement.Y -= myMoveSpeed;
@@ -76,7 +67,7 @@ namespace AnimalSlaughter
 
             if (keyInputs.IsKeyDown(Keys.D))
             {
-                myMovement.Y += myMoveSpeed;
+                myMovement.X += myMoveSpeed;
             }
         }
     }

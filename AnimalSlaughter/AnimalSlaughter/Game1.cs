@@ -44,14 +44,8 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-<<<<<<< HEAD
             PlayerMainSprite = Content.Load<Texture2D>("player/bill");
-            KeyboardState keyBoard = new KeyboardState();
-            ThePlayer = new player(100,7,10,PlayerMainSprite,new Vector2(100,100),keyBoard);
-=======
-            PlayerMainSprite = Content.Load<Texture2D>("player /pinkPix");
             ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100));
->>>>>>> Fredrik-Changes
             // TODO: use this.Content to load your game content here
         }
 
@@ -90,6 +84,7 @@ namespace AnimalSlaughter
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             SpriteBatch.Begin();
+            IsMouseVisible = true;
             // TODO: Add your drawing code here
             ThePlayer.draw(SpriteBatch);
             SpriteBatch.End();
