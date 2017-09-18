@@ -14,13 +14,13 @@ namespace AnimalSlaughter
         SpriteBatch SpriteBatch;
         player ThePlayer;
         Texture2D PlayerMainSprite;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 2000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1024;   // set this value to the desired height of your window
             Content.RootDirectory = "Content";
-            
         }
 
         /// <summary>
@@ -45,6 +45,7 @@ namespace AnimalSlaughter
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             PlayerMainSprite = Content.Load<Texture2D>("player/bill");
+
             ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100));
             // TODO: use this.Content to load your game content here
         }
