@@ -51,9 +51,9 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerMainSprite = Content.Load<Texture2D>("player/player_holdingPistol");
-            ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100),globalBulletList);
 
+            PlayerMainSprite = Content.Load<Texture2D>("player/player_holdingPistol");
+            ThePlayer = new player(new Weapons(10,100,PlayerMainSprite,new Vector2(0,0)),100,7,10,PlayerMainSprite,new Vector2(100,100), globalBulletList);
             // TODO: use this.Content to load your game content here
         }
 

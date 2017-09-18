@@ -11,17 +11,22 @@ namespace AnimalSlaughter
 {
     class player
     {
-        int myHp,myDamage,myWeapon;
         float myMoveSpeed;
         double myRotation;
         Vector2 myPosition;
+
+        int myHp, myDamage;
+        Weapons myWeapon;
+
         KeyboardState myKeys;
+        MouseState myMouse;
         Texture2D myMainSprite;
         List<bullet> myBulletList;
         bool isAlive, canShoot;
 
 
-        public player(int someWeapon ,int someHp,float someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aPosition, List<bullet>aBulletList)
+
+        public player(Weapons someWeapon, int someHp, float someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aPosition, List<bullet> aBulletList)
         {
             myHp = someHp;
             myMoveSpeed = someMoveSpeed;
@@ -42,7 +47,7 @@ namespace AnimalSlaughter
             double musx = Convert.ToDouble( Mouse.GetState().X) - myPosition.X;
             double musy = Convert.ToDouble(Mouse.GetState().Y) - myPosition.Y;
             myRotation = Math.Atan2(musy,musx);
-            userInput(myKeys);
+            userInput(myKeys, myMouse);
         }
 
         public void draw(SpriteBatch spritebatch)
@@ -52,29 +57,32 @@ namespace AnimalSlaughter
             spritebatch.Draw(myMainSprite, new Rectangle((int)myPosition.X, (int)myPosition.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
         }
 
-        public void userInput(KeyboardState keyInputs)
+        public void userInput(KeyboardState someKeyInput, MouseState someMouseInput)
         {
             Keyboard.GetState();
-            
-            if(keyInputs.IsKeyDown(Keys.W))
+            someMouseInput = Mouse.GetState();
+
+
+
+            if (someKeyInput.IsKeyDown(Keys.W))
             {
                 myPosition.Y -= myMoveSpeed;
             }
-            if (keyInputs.IsKeyDown(Keys.S))
+            if (someKeyInput.IsKeyDown(Keys.S))
             {
                 myPosition.Y += myMoveSpeed;
             }
-            if (keyInputs.IsKeyDown(Keys.A))
+            if (someKeyInput.IsKeyDown(Keys.A))
             {
                 myPosition.X -= myMoveSpeed;
             }
 
-            if (keyInputs.IsKeyDown(Keys.D))
+            if (someKeyInput.IsKeyDown(Keys.D))
             {
                 myPosition.X += myMoveSpeed;
             }
 
-            if (keyInputs.IsKeyDown(Keys.Space))
+            if (someMouseInput.LeftButton == ButtonState.Pressed)
             {
                  if(canShoot)
                 {
