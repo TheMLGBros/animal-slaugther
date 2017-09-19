@@ -11,9 +11,10 @@ namespace AnimalSlaughter
 {
     class player
     {
+        public static player playeracess;
         float myMoveSpeed;
         double myRotation;
-        Vector2 myPosition;
+        public Vector2 myPosition;
 
         int myHp, myDamage;
         Weapons myWeapon;

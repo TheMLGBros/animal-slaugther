@@ -39,7 +39,7 @@ namespace AnimalSlaughter
             myHitbox.X = (int)myPosition.X;
             myHitbox.Y = (int)myPosition.Y;
         }
-
+        //Add outside room Bool? (Markus)
         public void draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(myMainSprite,myHitbox,Color.Yellow);

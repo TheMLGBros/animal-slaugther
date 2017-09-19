@@ -14,7 +14,7 @@ namespace AnimalSlaughter
     /// </summary>
     public class Game1 : Game
     {
-
+        public static Game1 game1acess;
         enum Gamestates { startMenu, gamePlay, pause, shop, options, betweenLevels, win }//options will include:Gore setting & Sound...
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;

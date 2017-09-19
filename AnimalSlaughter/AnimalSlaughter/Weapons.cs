@@ -21,6 +21,14 @@ namespace AnimalSlaughter
             mySprite = aSprite;
             myPosition = aPosition;
         }
-        
+        public void update()
+        {
+            myPosition.X = player.playeracess.myPosition.X;
+            myPosition.Y = player.playeracess.myPosition.Y;
+        }
+        public void draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(mySprite, myPosition, null,Color.White,0.5f,new Vector2(0,0),1f,SpriteEffects.None,1f);
+        }
     }
 }
