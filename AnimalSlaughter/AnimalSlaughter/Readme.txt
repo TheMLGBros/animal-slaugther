@@ -1,3 +1,16 @@
-Markus: Player.
+Do
+Fredrik: Upgrades, Lifes, Electricpoles, pointsystem .
 Ahmed: Animal.
-Fredrik: Upgrades, pointsystem, Lifes, Electricpoles.
+Markus: Player.
+
+
+Doing
+Fredrik: First weapon
+Ahmed:
+Markus:
+
+
+Done
+Fredrik:
+Ahmed:
+Markus:
