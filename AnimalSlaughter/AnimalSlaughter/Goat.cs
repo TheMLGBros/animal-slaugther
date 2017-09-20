@@ -15,7 +15,7 @@ namespace AnimalSlaughter
         public Goat()
         {
             myHp = 100;
-            myDamage = 5;
+            myDamage = 4;
             myMoveSpeed = 2f;
             myMovement = new Vector2(Game1.Game1Acess.Window.ClientBounds.Width / 2, Game1.Game1Acess.Window.ClientBounds.Height / 2);
         }

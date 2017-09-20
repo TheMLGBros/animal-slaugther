@@ -1,4 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -13,10 +18,15 @@ namespace AnimalSlaughter
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player ThePlayer;
-        Goat TheGoat;
-        Texture2D PlayerMainSprite; Texture2D AGoatSprite;
-        public static Game1 Game1Acess;
+        Goat AGoat;
+        Undead_Wolf AnUndead_Wolf;
+        Texture2D PlayerMainSprite;
+        Texture2D TheGoatSprite;
+        Texture2D TheUndeadWolfSprite;
+        Dictionary<string, Texture2D> myTextureDictionary = new Dictionary<string, Texture2D>();
+        public Dictionary<string, Texture2D> getMyTextureDictionary { get => myTextureDictionary; }
 
+        public static Game1 Game1Acess;
 
         public Game1()
         {
@@ -49,11 +59,14 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerMainSprite = Content.Load<Texture2D>("player/bill");
-            AGoatSprite = Content.Load<Texture2D>("animals/Goat");
+            PlayerMainSprite = Content.Load<Texture2D>("PlayerMain/Player");
+            TheGoatSprite = Content.Load<Texture2D>("Animals/Goat");
+            TheUndeadWolfSprite = Content.Load<Texture2D>("Animals/Undead_Wolf");
+            
 
             ThePlayer = new player(512, 512, 7, 10, PlayerMainSprite, new Vector2(100, 100));
-            TheGoat = new Goat();
+            AGoat = new Goat();
+            AnUndead_Wolf = new Undead_Wolf();
             // TODO: use this.Content to load your game content here
         }
 
@@ -76,7 +89,7 @@ namespace AnimalSlaughter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             ThePlayer.update();
-            TheGoat.Update(ThePlayer.getMyMovement);
+            AGoat.Update(ThePlayer.getMyMovement);
 
             //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
 
@@ -96,7 +109,8 @@ namespace AnimalSlaughter
             IsMouseVisible = true;
             // TODO: Add your drawing code here
             ThePlayer.draw(SpriteBatch);
-            SpriteBatch.Draw(AGoatSprite, TheGoat.getMyMovement, Color.White);
+            SpriteBatch.Draw(TheGoatSprite, AGoat.getMyMovement, Color.White);
+            SpriteBatch.Draw(TheUndeadWolfSprite, AnUndead_Wolf.getMyMovement, Color.White);
             SpriteBatch.End();
             base.Draw(gameTime);
         }
