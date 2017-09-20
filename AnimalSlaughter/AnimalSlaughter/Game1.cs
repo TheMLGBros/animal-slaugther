@@ -96,7 +96,6 @@ namespace AnimalSlaughter
             IsMouseVisible = true;
             // TODO: Add your drawing code here
             ThePlayer.draw(SpriteBatch);
-            //SpriteBatch.Draw(AGoatSprite, TheGoat.getMyMovement, Color.White);
             SpriteBatch.Draw(AGoatSprite, TheGoat.getMyMovement, Color.White);
             SpriteBatch.End();
             base.Draw(gameTime);
