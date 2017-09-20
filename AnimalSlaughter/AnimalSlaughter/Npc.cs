@@ -20,9 +20,9 @@ namespace AnimalSlaughter
         public int getMyHp { get; set; }
         public int getMyDamage { get; set; }
         public int getMyWeapon { get; set; }
-        public int getMyRotation { get; set; }
-        public int getMyMovement { get; set; }
-        public int getMyMainSprite { get; set; }
+        public double getMyRotation { get => myRotation; }
+        public Vector2 getMyMovement { get => myMovement; }
+        public Texture2D getMyMainSprite { get => myMainSprite; }
 
     }
 }

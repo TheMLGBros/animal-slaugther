@@ -70,3 +70,4 @@ C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalS
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.csprojResolveAssemblyReference.cache
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.exe
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.pdb
+C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\Goat.xnb

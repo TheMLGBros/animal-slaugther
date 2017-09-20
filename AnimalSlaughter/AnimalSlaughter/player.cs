@@ -17,6 +17,7 @@ namespace AnimalSlaughter
         KeyboardState myKeys;
         Texture2D myMainSprite;
 
+        public Vector2 getMyMovement { get => myMovement; }
 
         public player(int someWeapon ,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
         {
@@ -28,7 +29,6 @@ namespace AnimalSlaughter
             myWeapon = someWeapon;
             myRotation = 0;
             
-
         }
 
         public void update()

@@ -13,14 +13,19 @@ namespace AnimalSlaughter
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player ThePlayer;
-        Texture2D PlayerMainSprite;
+        Goat TheGoat;
+        Texture2D PlayerMainSprite; Texture2D AGoatSprite;
+        public static Game1 Game1Acess;
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 2000;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferWidth = 2048;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1024;   // set this value to the desired height of your window
             Content.RootDirectory = "Content";
+
+            Game1Acess = this;
         }
 
         /// <summary>
@@ -45,8 +50,10 @@ namespace AnimalSlaughter
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
             PlayerMainSprite = Content.Load<Texture2D>("player/bill");
+            AGoatSprite = Content.Load<Texture2D>("animals/Goat");
 
-            ThePlayer = new player(1,100,7,10,PlayerMainSprite,new Vector2(100,100));
+            ThePlayer = new player(512, 512, 7, 10, PlayerMainSprite, new Vector2(100, 100));
+            TheGoat = new Goat();
             // TODO: use this.Content to load your game content here
         }
 
@@ -69,6 +76,7 @@ namespace AnimalSlaughter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             ThePlayer.update();
+            TheGoat.Update(ThePlayer.getMyMovement);
 
             //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
 
@@ -88,6 +96,8 @@ namespace AnimalSlaughter
             IsMouseVisible = true;
             // TODO: Add your drawing code here
             ThePlayer.draw(SpriteBatch);
+            //SpriteBatch.Draw(AGoatSprite, TheGoat.getMyMovement, Color.White);
+            SpriteBatch.Draw(AGoatSprite, TheGoat.getMyMovement, Color.White);
             SpriteBatch.End();
             base.Draw(gameTime);
         }
