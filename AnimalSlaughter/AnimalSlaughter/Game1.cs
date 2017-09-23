@@ -14,13 +14,14 @@ namespace AnimalSlaughter
     /// </summary>
     public class Game1 : Game
     {
-        public static Game1 game1acess;
-        enum Gamestates { startMenu, gamePlay, pause, shop, options, betweenLevels, win }//options will include:Gore setting & Sound...
+        Vector2 myPlayerStartPosition= new Vector2(500,800);
+        public static Game1 myGame1Acess;
+        enum myGamestates { startMenu, gamePlay, pause, shop, options, betweenLevels, win }//options will include:Gore setting & Sound...
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
-        player ThePlayer;
-        Texture2D PlayerMainSprite;
-        List<bullet> globalBulletList;
+        player myPlayer;
+        Texture2D myPlayerMainAnimation, myBasicBullet, myIdlePlayer;
+        List<Bullet> myGlobalBulletList;
             
         public Game1()
         {
@@ -40,7 +41,7 @@ namespace AnimalSlaughter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            globalBulletList = new List<bullet>();
+            myGlobalBulletList = new List<Bullet>();
             base.Initialize();
         }
 
@@ -52,9 +53,10 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
-            PlayerMainSprite = Content.Load<Texture2D>("player/player_holdingPistol");
-            ThePlayer = new player(new Weapons(10,100,PlayerMainSprite,new Vector2(0,0)),100,7,10,PlayerMainSprite,new Vector2(100,100), globalBulletList);
+            myIdlePlayer = Content.Load<Texture2D>("player/playerIdle");
+            myPlayerMainAnimation = Content.Load<Texture2D>("player/playerWalkAnimation");
+            myBasicBullet = Content.Load<Texture2D>("bullets/basicBullet");
+            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myPlayerMainAnimation, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
             // TODO: use this.Content to load your game content here
         }
 
@@ -76,12 +78,12 @@ namespace AnimalSlaughter
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            ThePlayer.update();
-            for(int i = globalBulletList.Count-1; i>=0; i--)
+            myPlayer.update(gameTime);
+            for(int i = myGlobalBulletList.Count-1; i>=0; i--)
             {
-                if(globalBulletList[i].isAlive)
+                if(myGlobalBulletList[i].isAlive)
                 {
-                    globalBulletList[i].update();
+                    myGlobalBulletList[i].update();
                 }
                 
             }
@@ -102,12 +104,12 @@ namespace AnimalSlaughter
             SpriteBatch.Begin();
             IsMouseVisible = true;
             // TODO: Add your drawing code here
-            ThePlayer.draw(SpriteBatch);
-            for (int i = globalBulletList.Count-1; i >= 0; i--)
+            myPlayer.draw(SpriteBatch);
+            for (int i = myGlobalBulletList.Count-1; i >= 0; i--)
             {
-                if (globalBulletList[i].isAlive)
+                if (myGlobalBulletList[i].isAlive)
                 {
-                    globalBulletList[i].draw(SpriteBatch);
+                    myGlobalBulletList[i].draw(SpriteBatch);
                 }
 
             }

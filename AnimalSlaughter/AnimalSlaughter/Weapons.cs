@@ -12,23 +12,53 @@ namespace AnimalSlaughter
     class Weapons
     {
         int myDamage, myAmmo;
-        Texture2D mySprite;
+        float myBulletSpeed;
+        double myRotation;
+        bool canShoot = true;
+
         Vector2 myPosition;
-        public Weapons(int someDamage, int someAmmo, Texture2D aSprite, Vector2 aPosition)
+        Texture2D myWeaponSprite, myBulletSprite;
+        List<Bullet> myBulletList;
+        MouseState myMouseInput;
+        player myOwner;
+        public Weapons(int someDamage, int someAmmo, double someRotation, float aBulletSpeed, List<Bullet> aBulletList, Texture2D someBulletSprite, player aOwner, Texture2D aWeaponSprite, Vector2 aPosition)
         {
             myDamage = someDamage;
             myAmmo = someAmmo;
-            mySprite = aSprite;
+            myWeaponSprite = aWeaponSprite;
             myPosition = aPosition;
+            myRotation = someRotation;
+            myBulletList = aBulletList;
+            myBulletSprite = someBulletSprite;
+            myBulletSpeed = aBulletSpeed;
+            myOwner = aOwner;
         }
-        public void update()
+        public void update(double aRotation)
         {
-            myPosition.X = player.playeracess.myPosition.X;
-            myPosition.Y = player.playeracess.myPosition.Y;
+            myPosition.X = player.myHandPosition.X;
+            myPosition.Y = player.myHandPosition.Y;
+            controls(myMouseInput);
+            myRotation = aRotation;
         }
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(mySprite, myPosition, null,Color.White,0.5f,new Vector2(0,0),1f,SpriteEffects.None,1f);
+            spriteBatch.Draw(myWeaponSprite, myPosition, null,Color.White,(float)myRotation+(float)Math.PI/2,new Vector2(myWeaponSprite.Width/2,myWeaponSprite.Height),1f,SpriteEffects.None,1f);
+        }
+        private void controls(MouseState someMouseInput)
+        {
+            someMouseInput = Mouse.GetState();
+            if (someMouseInput.LeftButton == ButtonState.Pressed)
+            {
+                if (canShoot)
+                {
+                    myBulletList.Add(new Bullet(myPosition, myRotation, 10 + myBulletSpeed, myDamage, myBulletSprite, new Rectangle((int)myPosition.X, (int)myPosition.Y, 8, 32)));
+                }
+                canShoot = false;
+            }
+            else
+            {
+                canShoot = true;
+            }
         }
     }
 }

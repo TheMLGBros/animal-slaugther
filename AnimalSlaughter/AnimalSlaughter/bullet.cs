@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace AnimalSlaughter
 {
-    class bullet
+    class Bullet
     {
         float myMoveSpeed;
         int myDamage;
@@ -20,7 +20,7 @@ namespace AnimalSlaughter
         Rectangle myHitbox;
        public bool isAlive;
 
-        public bullet(Vector2 aPosition, double aRotation, float aMoveSpeed, int aDamage, Texture2D aMainSprite, Rectangle aHitBox)
+        public Bullet(Vector2 aPosition, double aRotation, float aMoveSpeed, int aDamage, Texture2D aMainSprite, Rectangle aHitBox)
         {
             myPosition = aPosition;
             myMoveSpeed = aMoveSpeed;

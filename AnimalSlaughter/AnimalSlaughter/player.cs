@@ -14,20 +14,27 @@ namespace AnimalSlaughter
         public static player playeracess;
         float myMoveSpeed;
         double myRotation;
-        public Vector2 myPosition;
-
+        public static Vector2 myPosition, myHandPosition;
+        bool myLife;
         int myHp, myDamage;
+
+
         Weapons myWeapon;
 
         KeyboardState myKeys;
         MouseState myMouse;
-        Texture2D myMainSprite;
-        List<bullet> myBulletList;
-        bool isAlive, canShoot;
+        Texture2D myMainSprite, myWalkAnimation;
+
+        //Walking animation variables
+        private int myWalkRows { get; set; }
+        private int myWalkColumns { get; set; }
+        private int myCurrentWalkFrame;
+        private int myTotalWalkFrames;
+        private int myTimeSinceLastWalkFrame = 0;
+        private int myMillisecondsPerWalkFrame = 400;
 
 
-
-        public player(Weapons someWeapon, int someHp, float someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aPosition, List<bullet> aBulletList)
+        public player(Weapons someWeapon, int someHp, float someMoveSpeed, int someDamage,int someWalkRows, int someWalkColumns, int someTotalWalkFrames, Texture2D aMainSprite, Vector2 aPosition,Vector2 aHandPosition, List<Bullet> aBulletList, Texture2D aWalkAnimation)
         {
             myHp = someHp;
             myMoveSpeed = someMoveSpeed;
@@ -36,12 +43,18 @@ namespace AnimalSlaughter
             myPosition = aPosition;
             myWeapon = someWeapon;
             myRotation = 0;
-            myBulletList = aBulletList;
-            isAlive = true;
-            canShoot = true;
+            myWalkAnimation = aWalkAnimation;
+            myHandPosition = aHandPosition;
+            myLife = true;
+
+            //Walking animation variables
+            myWalkColumns = someWalkColumns;
+            myWalkRows = someWalkRows;
+            myTotalWalkFrames = someWalkColumns * someWalkRows;
+            myCurrentWalkFrame = someTotalWalkFrames;
         }
 
-        public void update()
+        public void update(GameTime aGameTime)
         {
             myKeys = Keyboard.GetState();
             //Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
@@ -49,13 +62,41 @@ namespace AnimalSlaughter
             double musy = Convert.ToDouble(Mouse.GetState().Y) - myPosition.Y;
             myRotation = Math.Atan2(musy,musx);
             userInput(myKeys, myMouse);
+            myWeapon.update(myRotation);
+
+            //Animtaion handling
+            myTimeSinceLastWalkFrame += aGameTime.ElapsedGameTime.Milliseconds;
+            if (myTimeSinceLastWalkFrame > myMillisecondsPerWalkFrame)
+            {
+                myTimeSinceLastWalkFrame -= myMillisecondsPerWalkFrame;
+
+
+                myCurrentWalkFrame++;
+                myTimeSinceLastWalkFrame = 0;
+                if (myCurrentWalkFrame > myTotalWalkFrames-1)
+                {
+                    myCurrentWalkFrame = 0;
+                }
+            }
         }
 
         public void draw(SpriteBatch spritebatch)
         {
-           // spritebatch.Draw(myMainSprite,myMovement,Color.White);
-           
-            spritebatch.Draw(myMainSprite, new Rectangle((int)myPosition.X, (int)myPosition.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
+            // spritebatch.Draw(myMainSprite,myMovement,Color.White);
+            myWeapon.draw(spritebatch);
+            //spritebatch.Draw(myMainSprite, new Rectangle((int)myPosition.X, (int)myPosition.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
+
+
+            //animation
+            int tempWidth = myWalkAnimation.Width / myWalkColumns;
+            int tempHeight = myWalkAnimation.Height / myWalkRows;
+            int tempRow = (int)((float)myCurrentWalkFrame / myWalkColumns);
+            int tempColumn = myCurrentWalkFrame % myWalkColumns;
+
+            Rectangle tempSourceRectangle = new Rectangle(tempWidth * tempColumn, tempHeight * tempRow, tempWidth, tempHeight);
+            //Rectangle destinationRectangle = new Rectangle((int)Position.X-enemyTexture.Width/2, (int)Position.Y - enemyTexture.Height / 2, width - enemyTexture.Width / 2, height - enemyTexture.Height / 2);
+
+            spritebatch.Draw(myWalkAnimation, new Vector2(myPosition.X, myPosition.Y), tempSourceRectangle, Color.White, (float)myRotation+(float)Math.PI/2, new Vector2(tempSourceRectangle.Width/2,tempSourceRectangle.Height/2), 1f, SpriteEffects.None, 0f);
         }
 
         public void userInput(KeyboardState someKeyInput, MouseState someMouseInput)
@@ -68,32 +109,22 @@ namespace AnimalSlaughter
             if (someKeyInput.IsKeyDown(Keys.W))
             {
                 myPosition.Y -= myMoveSpeed;
+                myHandPosition.Y -= myMoveSpeed;
             }
             if (someKeyInput.IsKeyDown(Keys.S))
             {
                 myPosition.Y += myMoveSpeed;
+                myHandPosition.Y += myMoveSpeed;
             }
             if (someKeyInput.IsKeyDown(Keys.A))
             {
                 myPosition.X -= myMoveSpeed;
+                myHandPosition.X -= myMoveSpeed;
             }
-
             if (someKeyInput.IsKeyDown(Keys.D))
             {
                 myPosition.X += myMoveSpeed;
-            }
-
-            if (someMouseInput.LeftButton == ButtonState.Pressed)
-            {
-                 if(canShoot)
-                {
-                 myBulletList.Add(new bullet(myPosition,myRotation,10+myMoveSpeed,myDamage,myMainSprite,new Rectangle((int)myPosition.X,(int)myPosition.Y,30,30)));
-                }
-                canShoot = false;
-            }
-            else
-            {
-                canShoot = true;
+                myHandPosition.X += myMoveSpeed;
             }
         }
     }
