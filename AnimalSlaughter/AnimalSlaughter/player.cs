@@ -15,7 +15,7 @@ namespace AnimalSlaughter
         float myMoveSpeed;
         double myRotation;
         public static Vector2 myPosition, myHandPosition;
-        bool myLife;
+        bool myLife, myWalkingAnimationIsPlaying;
         int myHp, myDamage;
 
 
@@ -52,6 +52,7 @@ namespace AnimalSlaughter
             myWalkRows = someWalkRows;
             myTotalWalkFrames = someWalkColumns * someWalkRows;
             myCurrentWalkFrame = someTotalWalkFrames;
+            myWalkingAnimationIsPlaying = false;
         }
 
         public void update(GameTime aGameTime)
@@ -92,11 +93,17 @@ namespace AnimalSlaughter
             int tempHeight = myWalkAnimation.Height / myWalkRows;
             int tempRow = (int)((float)myCurrentWalkFrame / myWalkColumns);
             int tempColumn = myCurrentWalkFrame % myWalkColumns;
-
             Rectangle tempSourceRectangle = new Rectangle(tempWidth * tempColumn, tempHeight * tempRow, tempWidth, tempHeight);
-            //Rectangle destinationRectangle = new Rectangle((int)Position.X-enemyTexture.Width/2, (int)Position.Y - enemyTexture.Height / 2, width - enemyTexture.Width / 2, height - enemyTexture.Height / 2);
 
+            //Rectangle destinationRectangle = new Rectangle((int)Position.X-enemyTexture.Width/2, (int)Position.Y - enemyTexture.Height / 2, width - enemyTexture.Width / 2, height - enemyTexture.Height / 2);
+            if(myWalkingAnimationIsPlaying)
+            {
             spritebatch.Draw(myWalkAnimation, new Vector2(myPosition.X, myPosition.Y), tempSourceRectangle, Color.White, (float)myRotation+(float)Math.PI/2, new Vector2(tempSourceRectangle.Width/2,tempSourceRectangle.Height/2), 1f, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                spritebatch.Draw(myMainSprite, new Vector2(myPosition.X, myPosition.Y), null, Color.White, (float)myRotation + (float)Math.PI / 2, new Vector2(tempSourceRectangle.Width / 2, tempSourceRectangle.Height / 2), 1f, SpriteEffects.None, 0f);
+            }
         }
 
         public void userInput(KeyboardState someKeyInput, MouseState someMouseInput)
@@ -104,6 +111,15 @@ namespace AnimalSlaughter
             Keyboard.GetState();
             someMouseInput = Mouse.GetState();
 
+
+            if(someKeyInput.IsKeyDown(Keys.W) || someKeyInput.IsKeyDown(Keys.A) || someKeyInput.IsKeyDown(Keys.S) || someKeyInput.IsKeyDown(Keys.D))
+            {
+                myWalkingAnimationIsPlaying = true;
+            }
+            else
+            {
+                myWalkingAnimationIsPlaying = false;
+            }
 
 
             if (someKeyInput.IsKeyDown(Keys.W))

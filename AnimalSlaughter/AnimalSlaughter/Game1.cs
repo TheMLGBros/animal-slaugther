@@ -56,7 +56,7 @@ namespace AnimalSlaughter
             myIdlePlayer = Content.Load<Texture2D>("player/playerIdle");
             myPlayerMainAnimation = Content.Load<Texture2D>("player/playerWalkAnimation");
             myBasicBullet = Content.Load<Texture2D>("bullets/basicBullet");
-            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myPlayerMainAnimation, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
+            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myIdlePlayer, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
             // TODO: use this.Content to load your game content here
         }
 
