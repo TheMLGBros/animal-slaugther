@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/markus.lejon/Documents/GitHub/animal_hunt/AnimalSlaughter/AnimalSlaughter/Content/bullets/basicBullet.png</File>
-    <File>C:/Users/markus.lejon/Documents/GitHub/animal_hunt/AnimalSlaughter/AnimalSlaughter/Content/player/playerWalkAnimation.png</File>
-    <File>C:/Users/markus.lejon/Documents/GitHub/animal_hunt/AnimalSlaughter/AnimalSlaughter/Content/player/playerIdle.png</File>
+    <File>C:/Users/ahmad.alasfar/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/bullets/basicBullet.png</File>
+    <File>C:/Users/ahmad.alasfar/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/player/playerWalkAnimation.png</File>
+    <File>C:/Users/ahmad.alasfar/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/player/playerIdle.png</File>
   </SourceFiles>
 </SourceFileCollection>
