@@ -35,15 +35,13 @@ namespace AnimalSlaughter
         }
         public void update(double aRotation)
         {
-           /* myPosition.X = player.myHandPosition.X;
-            myPosition.Y = player.myHandPosition.Y;*/
-            myPosition = player.myHandPosition;
             controls(myMouseInput);
             myRotation = aRotation;
+            myPosition.X = (float)Math.Cos(myRotation) + player.myPosition.X;
+            myPosition.Y = (float)Math.Sin(myRotation) + player.myPosition.Y;
         }
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(myWeaponSprite, myPosition, new Rectangle(30,30,5,5), Color.Red, (float)myRotation + (float)Math.PI / 2, new Vector2(myWeaponSprite.Width / 2, myWeaponSprite.Height), 1f, SpriteEffects.None, 1f);
             spriteBatch.Draw(myWeaponSprite, myPosition, null,Color.White,(float)myRotation+(float)Math.PI/2,new Vector2(myWeaponSprite.Width/2,myWeaponSprite.Height),1f,SpriteEffects.None,1f);
         }
         private void controls(MouseState someMouseInput)
