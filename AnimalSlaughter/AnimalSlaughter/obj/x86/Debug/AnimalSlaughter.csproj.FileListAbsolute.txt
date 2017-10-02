@@ -72,3 +72,4 @@ C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalS
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\Animals\Goat.xnb
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\Animals\Undead_Wolf.xnb
 C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\PlayerMain\Player.xnb
+C:\Users\ahmad.alasfar\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\Projectiles\Health_Bar.xnb

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/ahmad.alasfar/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/Animals/Undead_Wolf.png</SourceFile>
-  <SourceTime>2017-09-20T09:04:52.9905288+02:00</SourceTime>
+  <SourceTime>2017-09-20T12:18:03.2527156+02:00</SourceTime>
   <DestFile>C:/Users/ahmad.alasfar/Documents/GitHub/animal-slaugther/AnimalSlaughter/AnimalSlaughter/Content/bin/Windows/Animals/Undead_Wolf.xnb</DestFile>
-  <DestTime>2017-09-20T09:12:34.3412143+02:00</DestTime>
+  <DestTime>2017-09-20T12:21:11.1795808+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

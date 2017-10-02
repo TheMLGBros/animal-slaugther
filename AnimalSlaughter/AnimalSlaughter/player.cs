@@ -17,6 +17,8 @@ namespace AnimalSlaughter
         KeyboardState myKeys;
         Texture2D myMainSprite;
 
+        Texture2D TheHealthBarSprite;
+
         public Vector2 getMyMovement { get => myMovement; }
 
         public player(int someWeapon ,int someHp,int someMoveSpeed, int someDamage, Texture2D aMainSprite, Vector2 aMovement)
@@ -46,6 +48,7 @@ namespace AnimalSlaughter
            // spritebatch.Draw(myMainSprite,myMovement,Color.White);
            
             spritebatch.Draw(myMainSprite, new Rectangle((int)myMovement.X, (int)myMovement.Y, myMainSprite.Width, myMainSprite.Height), null, Color.White, (float)myRotation,new Vector2(myMainSprite.Width / 2, myMainSprite.Height / 2), SpriteEffects.None, 0);
+            //Health_Bar -> Here soon
         }
 
         public void userInput(KeyboardState keyInputs)
