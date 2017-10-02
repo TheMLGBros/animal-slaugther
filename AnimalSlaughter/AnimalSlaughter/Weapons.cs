@@ -42,7 +42,7 @@ namespace AnimalSlaughter
         }
         public void draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(myWeaponSprite, myPosition, null,Color.White,(float)myRotation+(float)Math.PI/2,new Vector2(myWeaponSprite.Width/2,myWeaponSprite.Height),1f,SpriteEffects.None,1f);
+            spriteBatch.Draw(myWeaponSprite, myPosition, null,Color.White,(float)myRotation+(float)Math.PI/2,new Vector2(myWeaponSprite.Width/2-myWeaponSprite.Width/6,myWeaponSprite.Height),1f,SpriteEffects.None,1f);
         }
         private void controls(MouseState someMouseInput)
         {
