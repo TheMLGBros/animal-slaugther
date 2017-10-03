@@ -103,3 +103,4 @@ C:\Users\Ahmed\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter
 C:\Users\Ahmed\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.csproj.CoreCompileInputs.cache
 C:\Users\Ahmed\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.exe
 C:\Users\Ahmed\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\obj\x86\Debug\AnimalSlaughter.pdb
+C:\Users\Ahmed\Documents\GitHub\animal-slaugther\AnimalSlaughter\AnimalSlaughter\bin\Windows\x86\Debug\Content\Enemies\Undead_Wolf.xnb

@@ -12,11 +12,13 @@ namespace AnimalSlaughter
     class player
     {
         public static player playeracess;
-        float myMoveSpeed;
+        public float myMoveSpeed;
         double myRotation;
         public static Vector2 myPosition, myHandPosition;
         bool myLife, myWalkingAnimationIsPlaying;
         int myHp, myDamage;
+
+        public static Vector2 GetPosition { get => myPosition; }
 
 
         Weapons myWeapon;
@@ -34,7 +36,7 @@ namespace AnimalSlaughter
         private int myMillisecondsPerWalkFrame = 400;
 
 
-        public player(Weapons someWeapon, int someHp, float someMoveSpeed, int someDamage,int someWalkRows, int someWalkColumns, int someTotalWalkFrames, Texture2D aMainSprite, Vector2 aPosition,Vector2 aHandPosition, List<Bullet> aBulletList, Texture2D aWalkAnimation)
+        public player(Weapons someWeapon, int someHp, float someMoveSpeed, int someDamage, int someWalkRows, int someWalkColumns, int someTotalWalkFrames, Texture2D aMainSprite, Vector2 aPosition, Vector2 aHandPosition, List<Bullet> aBulletList, Texture2D aWalkAnimation)
         {
             myHp = someHp;
             myMoveSpeed = someMoveSpeed;
@@ -59,9 +61,9 @@ namespace AnimalSlaughter
         {
             myKeys = Keyboard.GetState();
             //Vector2 mousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            double musx = Convert.ToDouble( Mouse.GetState().X) - myPosition.X;
+            double musx = Convert.ToDouble(Mouse.GetState().X) - myPosition.X;
             double musy = Convert.ToDouble(Mouse.GetState().Y) - myPosition.Y;
-            myRotation = Math.Atan2(musy,musx);
+            myRotation = Math.Atan2(musy, musx);
             userInput(myKeys, myMouse);
             myWeapon.update(myRotation);
 
@@ -74,7 +76,7 @@ namespace AnimalSlaughter
 
                 myCurrentWalkFrame++;
                 myTimeSinceLastWalkFrame = 0;
-                if (myCurrentWalkFrame > myTotalWalkFrames-1)
+                if (myCurrentWalkFrame > myTotalWalkFrames - 1)
                 {
                     myCurrentWalkFrame = 0;
                 }
@@ -96,9 +98,9 @@ namespace AnimalSlaughter
             Rectangle tempSourceRectangle = new Rectangle(tempWidth * tempColumn, tempHeight * tempRow, tempWidth, tempHeight);
 
             //Rectangle destinationRectangle = new Rectangle((int)Position.X-enemyTexture.Width/2, (int)Position.Y - enemyTexture.Height / 2, width - enemyTexture.Width / 2, height - enemyTexture.Height / 2);
-            if(myWalkingAnimationIsPlaying)
+            if (myWalkingAnimationIsPlaying)
             {
-            spritebatch.Draw(myWalkAnimation, new Vector2(myPosition.X, myPosition.Y), tempSourceRectangle, Color.White, (float)myRotation+(float)Math.PI/2, new Vector2(tempSourceRectangle.Width/2,tempSourceRectangle.Height/2), 1f, SpriteEffects.None, 0f);
+                spritebatch.Draw(myWalkAnimation, new Vector2(myPosition.X, myPosition.Y), tempSourceRectangle, Color.White, (float)myRotation + (float)Math.PI / 2, new Vector2(tempSourceRectangle.Width / 2, tempSourceRectangle.Height / 2), 1f, SpriteEffects.None, 0f);
             }
             else
             {
@@ -112,7 +114,7 @@ namespace AnimalSlaughter
             someMouseInput = Mouse.GetState();
 
 
-            if(someKeyInput.IsKeyDown(Keys.W) || someKeyInput.IsKeyDown(Keys.A) || someKeyInput.IsKeyDown(Keys.S) || someKeyInput.IsKeyDown(Keys.D))
+            if (someKeyInput.IsKeyDown(Keys.W) || someKeyInput.IsKeyDown(Keys.A) || someKeyInput.IsKeyDown(Keys.S) || someKeyInput.IsKeyDown(Keys.D))
             {
                 myWalkingAnimationIsPlaying = true;
             }
@@ -142,6 +144,20 @@ namespace AnimalSlaughter
                 myPosition.X += myMoveSpeed;
                 myHandPosition.X += myMoveSpeed;
             }
+        }
+
+        public bool IsDead()
+        {
+            if (myHp <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            return false;
         }
     }
 }

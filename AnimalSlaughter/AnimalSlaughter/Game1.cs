@@ -29,7 +29,7 @@ namespace AnimalSlaughter
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player myPlayer;
-        Texture2D myPlayerMainAnimation, myBasicBullet, myIdlePlayer;
+        Texture2D myPlayerMainAnimation, myBasicBullet, myIdlePlayer, myWolfEnemy;
         List<Bullet> myGlobalBulletList;
             
         public Game1()
@@ -65,7 +65,10 @@ namespace AnimalSlaughter
             myIdlePlayer = Content.Load<Texture2D>("player/playerIdle");
             myPlayerMainAnimation = Content.Load<Texture2D>("player/playerWalkAnimation");
             myBasicBullet = Content.Load<Texture2D>("bullets/basicBullet");
+            myWolfEnemy = Content.Load<Texture2D>("Enemies/Undead_Wolf");
             myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myIdlePlayer, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
+            Undead_Wolf.CreateWarrior(4, 100, 3);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,8 +98,12 @@ namespace AnimalSlaughter
                     myGlobalBulletList[i].update();
                 }
                 
+            }            
+
+            for (int i = Undead_Wolf.Wolves.Count; i > 0; i--)
+            {
+                Undead_Wolf.Wolves[i - 1].Update();
             }
-            //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
 
             // TODO: Add your update logic here
 
@@ -121,6 +128,11 @@ namespace AnimalSlaughter
                     myGlobalBulletList[i].draw(SpriteBatch);
                 }
 
+            }
+
+            for (int i = Undead_Wolf.Wolves.Count; i > 0; i--)
+            {
+                SpriteBatch.Draw(myWolfEnemy, Undead_Wolf.Wolves[i - 1].GetPosition, Color.White);
             }
 
             SpriteBatch.End();
