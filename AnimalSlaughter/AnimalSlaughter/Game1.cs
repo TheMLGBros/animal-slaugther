@@ -14,28 +14,22 @@ namespace AnimalSlaughter
     /// </summary>
     public class Game1 : Game
     {
-        
+        Vector2 myPlayerStartPosition= new Vector2(500,800);
+        public static Game1 myGame1Acess;
+        enum myGamestates { startMenu, gamePlay, pause, shop, options, betweenLevels, win }//options will include:Gore setting & Sound...
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
-        player ThePlayer;
-        Goat AGoat;
-        Undead_Wolf AnUndead_Wolf;
-        Texture2D PlayerMainSprite;
-        Texture2D TheGoatSprite;
-        Texture2D TheUndeadWolfSprite;
-        Dictionary<string, Texture2D> myTextureDictionary = new Dictionary<string, Texture2D>();
-        public Dictionary<string, Texture2D> getMyTextureDictionary { get => myTextureDictionary; }
-
-        public static Game1 Game1Acess;
-
+        player myPlayer;
+        Texture2D myPlayerMainAnimation, myBasicBullet, myIdlePlayer;
+        List<Bullet> myGlobalBulletList;
+            
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 2048;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferWidth = 2000;  // set this value to the desired width of your window
             graphics.PreferredBackBufferHeight = 1024;   // set this value to the desired height of your window
             Content.RootDirectory = "Content";
-
-            Game1Acess = this;
+            
         }
 
         /// <summary>
@@ -47,7 +41,7 @@ namespace AnimalSlaughter
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+            myGlobalBulletList = new List<Bullet>();
             base.Initialize();
         }
 
@@ -59,14 +53,10 @@ namespace AnimalSlaughter
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-            PlayerMainSprite = Content.Load<Texture2D>("PlayerMain/Player");
-            TheGoatSprite = Content.Load<Texture2D>("Animals/Goat");
-            TheUndeadWolfSprite = Content.Load<Texture2D>("Animals/Undead_Wolf");
-            
-
-            ThePlayer = new player(512, 512, 7, 10, PlayerMainSprite, new Vector2(100, 100));
-            AGoat = new Goat();
-            AnUndead_Wolf = new Undead_Wolf();
+            myIdlePlayer = Content.Load<Texture2D>("player/playerIdle");
+            myPlayerMainAnimation = Content.Load<Texture2D>("player/playerWalkAnimation");
+            myBasicBullet = Content.Load<Texture2D>("bullets/basicBullet");
+            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myIdlePlayer, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
             // TODO: use this.Content to load your game content here
         }
 
@@ -88,9 +78,15 @@ namespace AnimalSlaughter
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            ThePlayer.update();
-            AGoat.Update(ThePlayer.getMyMovement);
-
+            myPlayer.update(gameTime);
+            for(int i = myGlobalBulletList.Count-1; i>=0; i--)
+            {
+                if(myGlobalBulletList[i].isAlive)
+                {
+                    myGlobalBulletList[i].update();
+                }
+                
+            }
             //DJUIOAJOIDWAJIODJKIOAWDJIOJIOWDIOWDJIOWDJIOWDWDJIOAWDJIOWDJAWDIOJWDIOWDJIOWDWDIOJAWDIOJSDKLDAWJSDKWAJILSDAJKSDILAWSMDKAIJLSDAWDJISKDJLAWIKSDLJIAWKSDJILAWKSDJKLAWJIKSD
 
             // TODO: Add your update logic here
@@ -108,9 +104,16 @@ namespace AnimalSlaughter
             SpriteBatch.Begin();
             IsMouseVisible = true;
             // TODO: Add your drawing code here
-            ThePlayer.draw(SpriteBatch);
-            SpriteBatch.Draw(TheGoatSprite, AGoat.getMyMovement, Color.White);
-            SpriteBatch.Draw(TheUndeadWolfSprite, AnUndead_Wolf.getMyMovement, Color.White);
+            myPlayer.draw(SpriteBatch);
+            for (int i = myGlobalBulletList.Count-1; i >= 0; i--)
+            {
+                if (myGlobalBulletList[i].isAlive)
+                {
+                    myGlobalBulletList[i].draw(SpriteBatch);
+                }
+
+            }
+
             SpriteBatch.End();
             base.Draw(gameTime);
         }

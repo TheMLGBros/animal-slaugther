@@ -41,13 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="bullet.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Goat.cs" />
-    <Compile Include="Npc.cs" />
     <Compile Include="player.cs" />
+    <Compile Include="PointSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Undead Wolf.cs" />
+    <Compile Include="Weapons.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
