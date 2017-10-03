@@ -16,7 +16,16 @@ namespace AnimalSlaughter
     {
         Vector2 myPlayerStartPosition= new Vector2(500,800);
         public static Game1 myGame1Acess;
-        enum myGamestates { startMenu, gamePlay, pause, shop, options, betweenLevels, win }//options will include:Gore setting & Sound...
+        enum myGamestates
+        {
+            startMenu,
+            gamePlay,
+            pause,
+            shop,
+            options,
+            betweenLevels,
+            win
+        } //options will include:Gore setting & Sound...
         GraphicsDeviceManager graphics;
         SpriteBatch SpriteBatch;
         player myPlayer;
