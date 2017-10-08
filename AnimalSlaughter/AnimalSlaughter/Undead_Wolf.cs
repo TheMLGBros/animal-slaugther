@@ -31,10 +31,10 @@ namespace AnimalSlaughter
             {
                 int tempRandomizer = MyRandomizer.Next(0, 3);
 
-                Vector2 tempWest = new Vector2(400, 512);
-                Vector2 tempEast = new Vector2(1600, 512);
-                Vector2 tempNorth = new Vector2(1000, 0);
-                Vector2 tempSouth = new Vector2(1000, 400);
+                Vector2 tempWest = new Vector2(400, MyRandomizer.Next(384, 576));
+                Vector2 tempEast = new Vector2(1600, MyRandomizer.Next(384, 576));
+                Vector2 tempNorth = new Vector2(MyRandomizer.Next(800, 1120));
+                Vector2 tempSouth = new Vector2(MyRandomizer.Next(800, 1120), 400);
 
                 if (tempRandomizer == 0)
                 {

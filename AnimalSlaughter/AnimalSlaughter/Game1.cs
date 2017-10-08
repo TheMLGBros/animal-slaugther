@@ -66,7 +66,7 @@ namespace AnimalSlaughter
             myPlayerMainAnimation = Content.Load<Texture2D>("player/playerWalkAnimation");
             myBasicBullet = Content.Load<Texture2D>("bullets/basicBullet");
             myWolfEnemy = Content.Load<Texture2D>("Enemies/Undead_Wolf");
-            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(myIdlePlayer.Width/2,myIdlePlayer.Height)),100,7,10,1,4,4,myIdlePlayer, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
+            myPlayer = new player(new Weapons(10,100,0,0.2f,myGlobalBulletList,myBasicBullet,myPlayer,myBasicBullet,new Vector2(Window.ClientBounds.Width/2, Window.ClientBounds.Height/2)),100,7,10,1,4,4,myIdlePlayer, myPlayerStartPosition, new Vector2(myPlayerStartPosition.X+myIdlePlayer.Width/2-20, myPlayerStartPosition.Y+20), myGlobalBulletList,myPlayerMainAnimation);
             Undead_Wolf.CreateWarrior(4, 100, 3);
 
             // TODO: use this.Content to load your game content here
